@@ -1,0 +1,2 @@
+g++ -o Shapextractor Shapextractor.cxx -ljpeg
+

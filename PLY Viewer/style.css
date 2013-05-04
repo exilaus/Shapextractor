@@ -1,0 +1,40 @@
+html, body {
+  background: #FFFFFF;
+  COLOR: #30ff30;
+  font-family: Arial;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2{
+  background: #373737;
+  COLOR: #30ff30;
+  padding: 10px;
+  padding-left: 20px;
+  margin-top: 0px;
+}
+
+h1 a {
+  COLOR: #30ff30;
+}
+
+a {
+  COLOR: #30ff30;
+}
+
+/*
+  wrap text around after we hit 960px
+*/
+p {
+  COLOR: #30ff30;
+}
+
+p a{
+  COLOR: #30ff30;
+  width: 960px;
+}
+
+canvas{
+  border: solid black 1px;
+}
