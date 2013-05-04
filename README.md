@@ -20,6 +20,7 @@ sharpen)
 SW needs:
 - last Raspbian “wheezy”
 - raspberry-gpio-python Release 0.5.2a
+- libjpeg
 
 How works,
 process is diveded in 3 part :
@@ -46,9 +47,11 @@ http://sketchup.google.com/3dwarehouse/details?mid=ef682e116c511065eee8499fa420a
 Special thanks to:
 
 Antonio Orlando (it make a name)
+
 Henrik Peiss 
 
 Sjbaker (for original code)
+
 Tbuser  (spinscan code)
 
 Raspberry PI
