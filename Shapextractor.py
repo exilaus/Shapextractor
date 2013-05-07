@@ -103,7 +103,7 @@ subprocess.call("mkdir ./models/%s" % pkey,shell=True)
 subprocess.call("mkdir ./models/%s/jpg" % pkey,shell=True)
 
 print 'start extractor....'
-subprocess.call("./Scanextractor >./models/%s/%s.ply" % (pkey,pkey) ,shell=True)
+subprocess.call("./Shapextractor >./models/%s/%s.ply" % (pkey,pkey) ,shell=True)
 
 print 'clean up temp direcotry....'
 
