@@ -362,7 +362,7 @@ float *processRawFrame ( char *fname,char *cfname, int f, int num_frames, int *n
 		//rgb
 		unsigned int px = jpgcolor -> getPixel ( i, j*POINT_SKIP) ;
 		R = ((float)(( px >> 24 ) & 0xFF))/4;
-	        G = ((float)(( px >> 16 ) & 0xFF))/4;
+	    G = ((float)(( px >> 16 ) & 0xFF))/4;
 		B = ((float)(( px >> 8 ) & 0xFF))/4;
 	 }
     }
@@ -403,7 +403,7 @@ void outputFrames ( int num_points, int num_frames, float **vertices )
 
   printf("ply\n");
   printf("format ascii 1.0\n");
-  printf("comment Made with spinscan!\n");
+  printf("comment Made with Shapextractor!\n");
   printf("element vertex %d\n", num_outpoints*num_outframes);
   printf("property float x\n");
   printf("property float y\n");
