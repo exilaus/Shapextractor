@@ -330,7 +330,7 @@ float *processRawFrame ( char *fname,char *cfname, int f, int num_frames, int *n
   float R,G,B ;
    
   jpg -> load ( fname ) ;
-  jpgcolor -> load ( "a00000000.jpg" ) ;
+  jpgcolor -> load ( cfname ) ;
   int np = jpg->getHeight() / POINT_SKIP ;
   *num_points = np ; 
   
@@ -361,12 +361,8 @@ float *processRawFrame ( char *fname,char *cfname, int f, int num_frames, int *n
 		
 		//rgb
 		unsigned int px = jpgcolor -> getPixel ( i, j*POINT_SKIP) ;
-		//R = jpgcolor -> getPixelRed   ( i, j );
-		//G = jpgcolor -> getPixelGreen   ( i, j );
-		//B = jpgcolor -> getPixelBlue   ( i, j );
-		
 		R = ((float)(( px >> 24 ) & 0xFF))/4;
-	    G = ((float)(( px >> 16 ) & 0xFF))/4;
+	        G = ((float)(( px >> 16 ) & 0xFF))/4;
 		B = ((float)(( px >> 8 ) & 0xFF))/4;
 	 }
     }
@@ -404,16 +400,7 @@ void outputFrames ( int num_points, int num_frames, float **vertices )
   int num_outframes = num_frames / HORIZ_AVG ;
   int num_outpoints = num_points / VERT_AVG ;
 
-  //printf ( "AC3Db\n" ) ;
-  //printf ( "MATERIAL \"ac3dmat1\" rgb 1 1 1  amb 0.2 0.2 0.2  "
-  //           "emis 0 0 0  spec 0.5 0.5 0.5  shi 10  trans 0\n" ) ;
-  //printf ( "OBJECT world\n" ) ;
-  //printf ( "kids 1\n" ) ;
 
-  //printf ( "OBJECT poly\n" ) ;
-  //printf ( "name \"scan3d\"\n" ) ;
-  //printf ( "loc 0.0 0.0 0.0\n" ) ;
-  //printf ( "numvert %d\n", num_outpoints*num_outframes ) ;
   printf("ply\n");
   printf("format ascii 1.0\n");
   printf("comment Made with spinscan!\n");
