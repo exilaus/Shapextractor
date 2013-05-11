@@ -2,7 +2,7 @@ var ps, cloud;
 
 // Create an orbit camera halfway between the closest and farthest point
 //var cam = new OrbitCam({closest:0.1, farthest:10, distance: 2});
-var cam = new OrbitCam({closest:0.1, farthest:10, distance: 2});
+var cam = new OrbitCam({closest:0, farthest:1, distance: 0.12});
 var isDragging = false;
 var rotationStartCoords = [0, 0];
 
@@ -69,14 +69,13 @@ for (var i = 0, max = query.length; i < max; i++)
   
   ps.setup(document.getElementById('canvas'));
   
-  ps.background([0, 0, 0, 0.5]);
-  ps.pointSize(0.5);
+  ps.background([0, 0, 0, 0.2]);
+  ps.pointSize(0.2);
 
   ps.onRender = render;
   ps.onMouseScroll = zoom;
   ps.onMousePressed = mousePressed;
   ps.onMouseReleased = mouseReleased;
-  
   ps.registerParser("ply", PLYParser);
   
   cloud = ps.load(GET.file);

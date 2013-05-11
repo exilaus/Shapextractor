@@ -29,20 +29,19 @@ import ConfigParser
 #Take Photos and modify ====================================================================================
 def cheese(z):
  i = 0 
- while (i < (640*(480-CROPH)*75/100)):
+ while (i < (640*(480-CROPH)*65/100) or i > (640*(480-CROPH)*90/100) ):
   im1 = cam.get_image()
   time.sleep(0.1)     
   p.ChangeDutyCycle(12)
-  p.ChangeFrequency(50)   
   time.sleep(0.2)
   im2 = cam.get_image()
   time.sleep(0.2)
   p.ChangeDutyCycle(0)
   time.sleep(0.1)
-  pygame.image.save(im1, "a%08d.jpg" % z)
-  pygame.image.save(im2, "b%08d.jpg" % z)
-  im2 = Image.open("a%08d.jpg" % z).crop((0,CROPH,640,480))
-  im1 = Image.open("b%08d.jpg" % z).crop((0,CROPH,640,480))
+  pygame.image.save(im1, "b%08d.jpg" % z)
+  pygame.image.save(im2, "a%08d.jpg" % z)
+  im2 = Image.open("b%08d.jpg" % z).crop((0,CROPH,640,480))
+  im1 = Image.open("a%08d.jpg" % z).crop((0,CROPH,640,480))
   diff = ImageChops.difference(im2, im1)
   diff = ImageOps.grayscale(diff)
   diff = ImageOps.posterize(diff, 6)
@@ -110,17 +109,26 @@ subprocess.call("v4l2-ctl --set-ctrl sharpness=63" ,shell=True)
 print 'Start scan....'
 z=0
 p = gpio.PWM(LASER, 50)
-p.start(50)
+p.start(0)
 p.ChangeDutyCycle(0)   
 p.ChangeFrequency(50)
 for x in range(0,512):
  print 'Full step N-' , x
  cheese(z)
- stepper(SEQA,PINS)
- stepper(SEQB,PINS)
- stepper(SEQC,PINS)
- stepper(SEQD,PINS)
  z=z+1
+ stepper(SEQA,PINS)
+ if QUALITY >>1 :
+  cheese(z)
+  z=z+1
+ stepper(SEQB,PINS)
+ if QUALITY >>0 :
+  cheese(z)
+  z=z+1
+ stepper(SEQC,PINS)
+ if QUALITY >>1 :
+  cheese(z)
+  z=z+1
+ stepper(SEQD,PINS)
 
 #CLOSE resource (gpio & camera) and prepare folder project==================================================
 print 'cleanup system....'
@@ -141,7 +149,7 @@ print 'clean up temp direcotry....'
 #clean workbench add project in web site
 subprocess.call("mv *.jpg ./models/%s/jpg/" % pkey,shell=True)
 with open("index.htm", "a") as myfile:
- myfile.write('<A href="./PLY Viewer.htm?file=./models/%s/%s.ply">View </a>&nbsp;&nbsp;&nbsp; <A href="./models/%s/%s.ply">Download </a> &nbsp;&nbsp; <img src="./models/%s/jpg/a00000000.jpg"></img>  <br><br>' % (pkey,pkey,pkey,pkey,pkey))
+ myfile.write('<A href="./PLY Viewer.htm?file=./models/%s/%s.ply">View </a>&nbsp;&nbsp;&nbsp; <A href="./models/%s/%s.ply">Download </a> &nbsp;&nbsp; <img src="./models/%s/jpg/a00000000.jpg"></img>  <br><br>\n' % (pkey,pkey,pkey,pkey,pkey))
 subprocess.call("chmod 777 -R ./" ,shell=True)
 print 'Scanextractor done....'
 

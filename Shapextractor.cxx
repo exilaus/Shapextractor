@@ -18,22 +18,20 @@ extern "C"
 
 #include <math.h>
 
+#define RADIANS_TO_DEGREES  (180.0f / 3.14159f )
+#define DEGREES_TO_RADIANS  (3.14159f / 180.0f )
 /*================================================================*/
 /*    USER EDITABLE SECTION:  Change these to suit your scanner   */
 /*================================================================*/
-#define CAMERA_HFOV         50.0f   /* Degrees */
-#define CAMERA_VFOV         (CAMERA_HFOV*4.0f/5.0f) /* Degrees */
-#define CAMERA_DISTANCE     0.30f   /* Meters  */
-#define LASER_OFFSET        45.0f   /* Degrees */
-
-#define HORIZ_AVG           2 /* Num horizontal points to average */
-#define VERT_AVG            2 /* Num vertical points to average */
+float CAMERA_HFOV =50.0f;   /* Degrees */
+float CAMERA_VFOV =(CAMERA_HFOV*4.0f/5.0f); /* Degrees */
+float CAMERA_DISTANCE=0.30f;   /* Meters  */
+float LASER_OFFSET=45.0f;   /* Degrees */
+int HORIZ_AVG=2; /* Num horizontal points to average */
+int VERT_AVG=2; /* Num vertical points to average */
+int FRAME_SKIP=1;  /* Use every n'th frame for speed */
+int POINT_SKIP=1;  /* Use every n'th scanline for speed*/
 /*================================================================*/
-
-#define FRAME_SKIP          1  /* Use every n'th frame for speed */
-#define POINT_SKIP          1  /* Use every n'th scanline for speed*/
-#define RADIANS_TO_DEGREES  (180.0f / 3.14159f )
-#define DEGREES_TO_RADIANS  (3.14159f / 180.0f )
 
 class Image
 {
@@ -447,9 +445,24 @@ avg [ 5 ] += vertices[f*HORIZ_AVG+ff][(i*VERT_AVG+ii)*6+5] ;
 int main ( int argc, char **argv )
 {
   float **vertices ;
-
   int num_frames = 0 ;
-
+  int count;
+    if (argc == 8)
+    {
+      CAMERA_HFOV = atof(argv[1]);
+      CAMERA_VFOV =(CAMERA_HFOV*4.0f/5.0f);
+      CAMERA_DISTANCE = atof(argv[2]);
+      LASER_OFFSET = atof(argv[3]);
+      HORIZ_AVG = atol(argv[4]);
+      VERT_AVG = atol(argv[5]); 
+      FRAME_SKIP = atol(argv[6]); 
+      POINT_SKIP = atol(argv[7]); 
+	}
+	else
+	{
+     fprintf ( stderr,"Use default value\n");
+    }
+  
   for ( int i = 0 ; true ; i++ )
   {
     FILE *tmp ;
