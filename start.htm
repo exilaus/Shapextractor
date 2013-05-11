@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Shapextractor</title>
+
+
+    <link rel="stylesheet" type="text/css" href="./PLY Viewer/style.css">
+    <script type="text/javascript">
+
+        function printValue(sliderID, textbox) {
+            var x = document.getElementById(textbox);
+            var y = document.getElementById(sliderID);
+            x.value = y.value;
+        }
+
+        window.onload = function() { printValue('slider1', 'rangeValue1'); printValue('slider2', 'rangeValue2'); printValue('slider3', 'rangeValue3'); printValue('slider4', 'rangeValue4'); }
+    </script>
+    <script src="./PLY Viewer/xbps.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/psapi.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/mjs.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/asc.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/psi.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/pts.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/ply.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/hps0.js"></script><script language="javascript" type="text/javascript" src="./PLY Viewer/psi2.js"></script><script type="text/javascript" src="./PLY Viewer/psapi.js"></script><script type="text/javascript" src="./PLY Viewer/mjs.js"></script><script type="text/javascript" src="./PLY Viewer/asc.js"></script><script type="text/javascript" src="./PLY Viewer/psi.js"></script><script type="text/javascript" src="./PLY Viewer/pts.js"></script><script type="text/javascript" src="./PLY Viewer/ply.js"></script><script type="text/javascript" src="./PLY Viewer/hps0.js"></script><script type="text/javascript" src="./PLY Viewer/psi2.js"></script>
+    <script src="./PLY Viewer/orbitcam.js"></script>
+    <script src="./PLY Viewer/ply.js"></script>
+    <script src="./PLY Viewer/PLYviewer.js"></script>
+  <style type="text/css"></style></head>
+
+  <body onload="start();">   
+   
+	<h2>Shapextractor:</h2>
+	
+ 
+<input id="A" type="hidden" value="9"/>
+<input id="An" type="hidden" value="9"/>
+<input id="B" type="hidden" value="9"/>
+<input id="Bn" type="hidden" value="9"/>
+<input id="Laser" type="hidden" value="9"/>
+<input id="Light" type="hidden" value="9"/>
+<input id="delay" type="hidden" value="0.002"/>
+<input id="FRAME_SKIP" type="hidden" value="1"/>
+<input id="POINT_SKIP" type="hidden" value="1"/>
+<center>
+
+laser Power</br>
+<input id="LPWM" type="range" min="0" max="255" step="1" value="12" onchange="printValue('LPWM','v1')"/><input id="v1" type="text" size="5" value="12"/></br>
+crop</br>
+<input id="Crop_height" type="range" min="100" max="480" step="1" value="0" onchange="printValue('Crop_height','v2')"/><input id="v2" type="text" size="5" value="0"/></br>
+Quality</br>
+<input id="Quality" type="range" min="0" max="2" step="1" onchange="printValue('Quality','v3')"/><input id="v3" type="text" size="5" value="0"/></br>
+laser offset:</br>
+<input id="Laser_offset" type="range" min="0" max="45" step="0.1" value="45" onchange="printValue('Laser_offset','v4')"/><input id="v4" type="text" size="5" value="45"/></br>
+camera distance:</br>
+<input id="CAMERA_DISTANCE" type="range" min="0" max="100" step="0.1"  value="0.30" onchange="printValue('Camera_distance','v5')"/><input id="v5" type="text" size="5" value="0.30"/></br>
+horizontal avrange:</br>
+<input id="HORIZ_AVG" type="range" min="1" max="15" step="10" value="2" onchange="printValue('HORIZ_AVG','v6')"/><input id="v6" type="text" size="5"  value="2"/></br>
+Vertical avrange:</br>
+<input id="VERT_AVG" type="range" min="1" max="15" step="10" value="2"  onchange="printValue('VERT_AVG','v7')"/><input id="v7" type="text" size="5"  value="2"/></br>
+</br></br>
+<a href="#" class="button">Start Scan</a>
+</center>
+
+	</strong></div><strong>
+</strong></body></html>
+
+
