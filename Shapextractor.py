@@ -4,7 +4,7 @@ import RPi.GPIO as gpio
 import time
 import os 
 import binascii
-from PIL import Image,ImageChops,ImageOps
+from PIL import Image,ImageChops,ImageOps,ImageDraw
 import pygame.image
 import pygame.camera
 import ConfigParser
@@ -18,9 +18,9 @@ import ConfigParser
 #DELAY = 0.002 
 #CROPH = 180  #pix to remove from top.(need for  clean image final output)
 #QUALITY = 1  #(0 to 2) 0=512photo  1=2014 2=4028
-RESV=640
-RESH=480
-ROT=0
+#RESV=640
+#RESH=480
+#ROT=0
 
 #PINS = [A,An,B,Bn] #GPIO stepper 
 #SEQA = [(A,),(A,An)]
@@ -32,7 +32,7 @@ ROT=0
 #Take Photos and modify ====================================================================================
 def cheese(z):
  i = 0 
- while (i < (RESV*(RESH-CROPH)*65/100) or i > (RESV*(RESH-CROPH)*90/100) ):
+ while (i < (RESV*RESH*65/100) or i > (RESV*RESH*90/100) ):
   im1 = cam.get_image()
   time.sleep(0.05)     
   p.ChangeDutyCycle(12)
@@ -43,8 +43,12 @@ def cheese(z):
   time.sleep(0.05)
   pygame.image.save(im1, "b%08d.jpg" % z)
   pygame.image.save(im2, "a%08d.jpg" % z)
-  im2 = Image.open("b%08d.jpg" % z).rotate(ROT).crop((0,CROPH,RESV,RESH))
-  im1 = Image.open("a%08d.jpg" % z).rotate(ROT).crop((0,CROPH,RESV,RESH))
+  im2 = Image.open("b%08d.jpg" % z).rotate(ROT)
+  im1 = Image.open("a%08d.jpg" % z).rotate(ROT)
+  draw = ImageDraw.Draw(im2)
+  draw.rectangle([0,0,RESV,CROPH], fill=0)
+  draw = ImageDraw.Draw(im1)
+  draw.rectangle([0,0,RESV,CROPH], fill=0)
   diff = ImageChops.difference(im2, im1)
   diff = ImageOps.grayscale(diff)
   diff = ImageOps.posterize(diff, 6)
@@ -52,7 +56,7 @@ def cheese(z):
   i= v[0][0]
   print i
   im1.save("b%08d.jpg" % z, quality= 90)
-  im1 = Image.new("RGB", (RESV,RESH-CROPH))
+  im1 = Image.new("RGB", (RESV,RESH))
   im1.paste(diff)
   im1.save("%08d.jpg" % z, quality= 90)
   im2.save("a%08d.jpg" % z, quality= 90)
@@ -85,6 +89,18 @@ LIGHT = int(config.get('PYTHON', 'LIGHT')) #GPIO FOR MANAGE WHITE LEDS OR PLED
 DELAY = float(config.get('PYTHON', 'DELAY')) #stepper sequence delay
 CROPH = int(config.get('PYTHON', 'CROPH'))  #pix to remove from top.(need for  clean image final output)
 QUALITY = int(config.get('PYTHON', 'QUALITY'))  #(0 to 2) 0=512photo  1=2014 2=4028
+RESV= int(config.get('PYTHON', 'RESV'))
+RESH= int(config.get('PYTHON', 'RESH'))
+ROT= int(config.get('PYTHON', 'ROT'))
+
+CAMERA_HFOV = float(config.get('C++', 'CAMERA_HFOV'))
+CAMERA_DISTANCE = float(config.get('C++', 'CAMERA_DISTANCE'))
+LASER_OFFSET = float(config.get('C++', 'LASER_OFFSET')) 
+HORIZ_AVG = int(config.get('C++', 'HORIZ_AVG'))
+VERT_AVG = int(config.get('C++', 'VERT_AVG'))
+FRAME_SKIP = int(config.get('C++', 'FRAME_SKIP'))
+POINT_SKIP = int(config.get('C++', 'POINT_SKIP'))
+
 
 PINS = [A,An,B,Bn] #GPIO stepper 
 SEQA = [(A,),(A,An)]
@@ -151,7 +167,7 @@ subprocess.call("mkdir ./models/%s/jpg" % pkey,shell=True)
 
 #shapextratctor=============================================================================================
 print 'start extractor....'
-subprocess.call("./Shapextractor >./models/%s/%s.ply" % (pkey,pkey) ,shell=True)
+subprocess.call("./Shapextractor %s %s %s %s %s %s %s %s >./models/%s/%s.ply" % (CAMERA_HFOV,CAMERA_DISTANCE,LASER_OFFSET,HORIZ_AVG,VERT_AVG,FRAME_SKIP,POINT_SKIP,ROT,pkey,pkey) ,shell=True)
 
 print 'clean up temp direcotry....'
 

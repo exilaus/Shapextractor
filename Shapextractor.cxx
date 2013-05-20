@@ -447,7 +447,7 @@ int main ( int argc, char **argv )
   float **vertices ;
   int num_frames = 0 ;
   int count;
-    if (argc == 8)
+    if (argc == 9)
     {
       CAMERA_HFOV = atof(argv[1]);
       CAMERA_VFOV =(CAMERA_HFOV*4.0f/5.0f);
@@ -456,7 +456,12 @@ int main ( int argc, char **argv )
       HORIZ_AVG = atol(argv[4]);
       VERT_AVG = atol(argv[5]); 
       FRAME_SKIP = atol(argv[6]); 
-      POINT_SKIP = atol(argv[7]); 
+      POINT_SKIP = atol(argv[7]);
+	  if  (argv[8] == "90")
+      {
+	   CAMERA_VFOV = atof(argv[1]);
+       CAMERA_HFOV =(CAMERA_VFOV*4.0f/5.0f);
+	  }	  
 	}
 	else
 	{
