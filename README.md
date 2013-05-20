@@ -64,4 +64,5 @@ Raspberry PI
 Makibox/Makible team!!!!
 
 Mauro
+for a beer o caffe use this paypal :) it help for find low cost camera for RPI
 exilaus@hotmail.com
