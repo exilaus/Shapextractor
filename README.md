@@ -29,8 +29,7 @@ process is diveded in 3 part :
 - html pages ready for publish (WebGL ply viewer with XB PointStream )
 
 For start:
- start.sh
- if need web server startweb.sh
+ ./service.sh start it start webserver on port 7000 after this you can use your html5(firefox chrome) browser for start new scan or see last scan project
 
 To do:
 - Trace more and more clear laser line
