@@ -1,1 +1,0 @@
-sudo python Shapextractor.py
