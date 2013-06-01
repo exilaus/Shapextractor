@@ -28,13 +28,20 @@ process is diveded in 3 part :
 - reconstruction (c++)  , read photos and create point cloud
 - html pages ready for publish (WebGL ply viewer with XB PointStream )
 
-For start:
- ./service.sh start it start webserver on port 7000 after this you can use your html5(firefox chrome) browser for start new scan or see last scan project
+For start with web interface:
+
+./service.sh start 
+It start cgi webserver on port 7000 and can use Shapextractor with your html5(firefox chrome) browser for start new scan or see last scan project
+
+For star with command line:
+sudo pyhton Shapextractor.py 
+!!!check before launch Shapextractor.ini it contain all parameter
+
 
 To do:
 - Trace more and more clear laser line
-- Set parameter via external file
 - Find low cost and small webcamera supported by RPI&Pygame
+- make it compatible with mjpg-stramer (for share camera output with other software too for example octoprint) 
 
 Gallery :
 https://plus.google.com/photos/114285476102201750422/albums/5868629874379483185
