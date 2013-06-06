@@ -13,7 +13,7 @@ import pygame.image
 import pygame.camera
 import ConfigParser
 import urllib
-
+import os.path
 
 #Take Photos and modify ====================================================================================
 def cheese(z):
@@ -77,13 +77,11 @@ print "<h2>Shapextractor:</h2>"
 print "<center>"
 
 
-
-
-try:
-   with open('/dev/video0'): pass 
-except IOError:
-   print "Check your webcam"
-   exit() 
+proc = subprocess.Popen(['pidof', 'mjpg-streamer'], stdout=subprocess.PIPE)
+output = proc.stdout.read()
+if output > 0:
+    print "Error mjpg-streaming not ready"
+    sys.exit()
 
 print "<b>Scanextractor 0.7</b></br>"
 print "Init system ....</br>"
@@ -128,6 +126,7 @@ gpio.output(LIGHT, gpio.HIGH)
 
 #CAMERA=====================================================================================================
 print "Init camera....</br>"
+		    
 if ROT==90 :
  z=RESW
  RESW=RESH
