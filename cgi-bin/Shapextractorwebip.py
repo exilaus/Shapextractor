@@ -77,10 +77,11 @@ print "<h2>Shapextractor:</h2>"
 print "<center>"
 
 
-proc = subprocess.Popen(['pidof', 'mjpg-streamer'], stdout=subprocess.PIPE)
+proc = subprocess.Popen(['pidof','mjpg_streamer'], stdout=subprocess.PIPE)
 output = proc.stdout.read()
-if output > 0:
+if output <= 0:
     print "Error mjpg-streaming not ready"
+    print output
     sys.exit()
 
 print "<b>Scanextractor 0.7</b></br>"
