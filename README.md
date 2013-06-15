@@ -7,41 +7,8 @@ Why i create/modify it?
 I want use my RPi as 3d plattaform, printing and scanning,
  meanwile i waiting my 3d printer (www.Makibox.com) i try to create something for it.
 
-HW needs:
-
-- ulm2003 + 28BYJ-48 (ebay)
-- 6cm diameter plate to add on stepper
-- thin laser line (DX)
-- webcam compatible with pygame (640x480 currently i use ps3eye and no like it too much 
-
-sharpen)
-- usb lamp ??? (is added in code but not really need if work with stable light)
-
-SW needs:
-- last Raspbian “wheezy”
-- raspberry-gpio-python Release 0.5.2a
-- libjpeg
-
-How works,
-process is diveded in 3 part :
-- capture (python) take photos ,manipulate it, rotate spintable , manage led&laser , generate ply
-- reconstruction (c++)  , read photos and create point cloud
-- html pages ready for publish (WebGL ply viewer with XB PointStream )
-
-For start with web interface:
-
-./service.sh start 
-It start cgi webserver on port 7000 and can use Shapextractor with your html5(firefox chrome) browser for start new scan or see last scan project
-
-For star with command line:
-sudo pyhton Shapextractor.py 
-!!!check before launch Shapextractor.ini it contain all parameter
-
-
-To do:
-- Trace more and more clear laser line
-- Find low cost and small webcamera supported by RPI&Pygame
-- make it compatible with mjpg-stramer (for share camera output with other software too for example octoprint) 
+wiki for more information:
+https://github.com/exilaus/Shapextractor/wiki
 
 Gallery :
 https://plus.google.com/photos/114285476102201750422/albums/5868629874379483185
@@ -59,6 +26,8 @@ Special thanks to:
 
 Antonio Orlando (it make a name)
 
+Kariloy  Markief (wiki assistant and for future porting on arduino)
+
 Henrik Peiss 
 
 Sjbaker (for original code)
@@ -69,6 +38,7 @@ Raspberry PI
 
 Makibox/Makible team!!!!
 
+
 Mauro
-for a beer o caffe use this paypal :) it help for find low cost camera for RPI
-exilaus@hotmail.com
+
+Exilaus@hotmail.com
