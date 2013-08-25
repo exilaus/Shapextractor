@@ -1,5 +1,8 @@
 Shapextractor
 ====================
+Search Donation:
+http://www.kapipal.com/787292b234634eb9a2f69460ea6470ea
+
 Is a headless 3d scanner full automated with RPI and with low cost items.
 Is based from http://www.sjbaker.org/wiki/index.php?title=A_Simple_3D_Scanner.
 
