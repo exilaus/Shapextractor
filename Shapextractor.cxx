@@ -435,7 +435,7 @@ avg [ 5 ] += vertices[f*HORIZ_AVG+ff][(i*VERT_AVG+ii)*6+5] ;
       avg [ 1 ] /= (float)( HORIZ_AVG*VERT_AVG ) ;
       avg [ 2 ] /= (float)( HORIZ_AVG*VERT_AVG ) ;
 
-      printf ( "%f %f %f %f %f 0.000000 %i %i %i\n", avg [ 0 ], avg [ 1 ], avg [ 2 ], avg [ 0 ], avg [ 1 ], int(avg [ 3 ] ), int(avg [ 4 ] ), int(avg [ 5 ] )) ;
+      printf ( "%f %f %f %f %f %f %i %i %i\n", avg [ 0 ], avg [ 1 ], avg [ 2 ], avg [ 0 ], avg [ 1 ], avg [ 2 ], int(avg [ 3 ] ), int(avg [ 4 ] ), int(avg [ 5 ] )) ;
     }
 
 }
@@ -487,8 +487,9 @@ int main ( int argc, char **argv )
 
   fprintf ( stderr, "\nProcessing %d frames...\n", num_frames ) ;
 
-  vertices = new float * [ num_frames ] ;
-
+  verticesleft = new float * [ num_frames ] ;
+  verticesright = new float * [ num_frames ] ;
+  
   int npoints = -1 ;
 
   for ( int i = 0 ; i < num_frames ; i++ )
@@ -499,10 +500,9 @@ int main ( int argc, char **argv )
     sprintf ( fname, "%08d.jpg", i*FRAME_SKIP ) ;
     sprintf ( cfname, "a%08d.jpg", i*FRAME_SKIP ) ;
 
-    fprintf ( stderr, "Processing frame %d/%d '%s'\r",
-                                          i, num_frames, fname ) ;
+    fprintf ( stderr, "Processing frame %d/%d '%s'\r", i, num_frames, fname ) ;
 
-    vertices [ i ] = processRawFrame ( fname,cfname, i, num_frames, &np ) ;
+    verticesleft [ i ] = processRawFrame ( fname,cfname, i, num_frames, &np ) ;
 
     assert ( npoints == -1 || np == npoints ) ;
 
