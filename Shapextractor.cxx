@@ -487,26 +487,29 @@ int main ( int argc, char **argv )
 
   fprintf ( stderr, "\nProcessing %d frames...\n", num_frames ) ;
 
-  verticesleft = new float * [ num_frames ] ;
-  verticesright = new float * [ num_frames ] ;
-  
+  vertices = new float * [ num_frames ] ;
+ 
   int npoints = -1 ;
 
   for ( int i = 0 ; i < num_frames ; i++ )
   {
     int np ;
-    char fname [ 100 ] ;
-	char cfname [ 100 ] ;
-    sprintf ( fname, "%08d.jpg", i*FRAME_SKIP ) ;
-    sprintf ( cfname, "a%08d.jpg", i*FRAME_SKIP ) ;
-
-    fprintf ( stderr, "Processing frame %d/%d '%s'\r", i, num_frames, fname ) ;
-
-    verticesleft [ i ] = processRawFrame ( fname,cfname, i, num_frames, &np ) ;
-
+    char Lfname [ 100 ] ;
+    char Rfname [ 100 ] ;
+    char Cfname [ 100 ] ;
+    sprintf ( Lfname, "L%08d.jpg", i*FRAME_SKIP ) ;
+    sprintf ( Rfname, "R%08d.jpg", i*FRAME_SKIP ) ;
+    sprintf ( Cfname, "C%08d.jpg", i*FRAME_SKIP ) ;
+    fprintf ( stderr, "Processing left laser frame %d/%d '%s'\r", i, num_frames, fname ) ;
+    float LASER_OFFSET=45.0f;   /* Degrees */
+         vertices [ i ] = processRawFrame ( Lfname,Cfname, i, num_frames, &np ) ;
     assert ( npoints == -1 || np == npoints ) ;
-
     npoints = np ;
+    float LASER_OFFSET=315.0f;   /* Degrees */
+	vertices [ i+1+num_frames ] = processRawFrame ( Rfname,Cfname, i, num_frames, &np ) ;
+    assert ( npoints == -1 || np == npoints ) ;
+    npoints = npoints + np ;
+	
   }
 
   fprintf ( stderr, "\nOutputting...\n", num_frames ) ;
