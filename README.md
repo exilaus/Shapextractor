@@ -14,17 +14,17 @@ https://sketchfab.com/show/58f39bb7292d4e3e846ea7437aeaa2ea
 
 
 
-- color output
-- 
-- scan no need dark room
-- 
-- lan connection need only for take object
-- 
-- use rpi with camera board
-- 
-- 2 laserline scan 120° module
-- 
-- use simple and low cost 28BYJ-48 with ULN2003
+-color output
+ 
+-scan no need dark room
+ 
+-lan connection need only for take object
+ 
+-use rpi with camera board
+ 
+-2 laserline scan 120° module
+ 
+-use simple and low cost 28BYJ-48 with ULN2003
 ----------------------------------------------------------------------------------------------------------------
 
 
