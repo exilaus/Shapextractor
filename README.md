@@ -1,7 +1,23 @@
 Shapextractor
 ====================
-Search Donation:
-http://www.kapipal.com/787292b234634eb9a2f69460ea6470ea
+update on V2.
+-Core complete tested and publish
+-Capture fase tested but need clean code -no publish soon publish draft but work code.
+-Publish printed tested item (remaining to re-print modded rpi case with camera because make some issue on disign)
+
+draft final desing are:
+https://sketchfab.com/show/58f39bb7292d4e3e846ea7437aeaa2ea
+
+
+
+- color output
+- scan no need dark room
+- lan connection need only for take object
+- use rpi with camera board
+- 2 laserline scan 120° module
+- use simple and low cost 28BYJ-48 with ULN2003
+----------------------------------------------------------------------------------------------------------------
+
 
 Is a headless 3d scanner full automated with RPI and with low cost items.
 Is based from http://www.sjbaker.org/wiki/index.php?title=A_Simple_3D_Scanner.
@@ -21,7 +37,7 @@ https://picasaweb.google.com/114285476102201750422/ShapExtractorFromMakiclubItal
 Some online test result:
 http://exilaus.byethost15.com/
 
-Model no tested and need some update (waiting for 3dprinter):
+Model share only printed and tested item in V2 :
 http://sketchup.google.com/3dwarehouse/details?mid=ef682e116c511065eee8499fa420acaa
 
 
